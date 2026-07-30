@@ -149,7 +149,6 @@ body { font-family:'Noto Sans TC',sans-serif; background:var(--bg); color:var(--
   <div class="logo">AOCC</div>
   <div class="ftabs">
     <div class="ftab on" onclick="switchFloor('6F',this)">6F</div>
-    <div class="ftab" onclick="switchFloor('4F',this)">4F</div>
     <div class="ftab" onclick="switchFloor('10F',this)">10F</div>
   </div>
   <div class="sbox">
@@ -210,8 +209,8 @@ const ORIG_4F  = {
   "3_2":{"zh":"NA","en":"","dept":"未指定"},
   "3_3":{"zh":"NA","en":"","dept":"未指定"},
 };
-const ORIG_10F = {"0_2":{"zh":"林韋廷 #29963","en":"Willie1_Lin","dept":"雲端服務開發部"},"0_3":{"zh":"邱伶怡 #994","en":"Chloe_Chiu","dept":"雲端服務開發部"},"1_0":{"zh":"郭建宏 #23183","en":"Kakuangelo_kuo","dept":"遠距健康"},"1_1":{"zh":"林純忠 #27507","en":"Mirage_Lin","dept":"雲端服務開發部"},"1_2":{"zh":"曹昌林 #22563","en":"Jerry_Tsao","dept":"雲端服務開發部"},"1_3":{"zh":"陳彥伯 #29098","en":"Olaf1_Chen","dept":"雲端服務開發部"},"2_0":{"zh":"劉金富 #3015","en":"Jonny1_Liu","dept":"雲端服務開發部"},"2_1":{"zh":"黃怡芸 #29399","en":"Where_Huang","dept":"遠距健康"},"2_2":{"zh":"葉日威 #24301","en":"Mars_Yeh","dept":"雲端服務開發部"},"2_3":{"zh":"李季恩 #9940","en":"Nathan1_Lee","dept":"雲端服務開發部"},"3_0":{"zh":"蔣克誠 #29813","en":"Josh2_Chiang","dept":"雲端服務開發部"},"3_1":{"zh":"楊政遠 #23832","en":"Sawyer_Yang","dept":"雲端服務開發部"},"3_2":{"zh":"顏政易 #23253","en":"Tony_Yen","dept":"雲端服務開發部"},"3_3":{"zh":"陳威志 #21597","en":"Sid1_Chen","dept":"雲端服務開發部"},"4_2":{"zh":"黃信維 #29192","en":"Shawn5_Huang","dept":"雲端服務開發部"},"4_3":{"zh":"張柏偉 #25541","en":"Virgil_Chang","dept":"雲端服務開發部"},"5_2":{"zh":"何鎮 #29908","en":"Pto_He","dept":"雲端服務開發部"},"5_3":{"zh":"駱泱靚 #23799","en":"Camel_Lo","dept":"雲端服務開發部"},"6_2":{"zh":"Yanwarud Chinsiriwong #25098","en":"Wenfeng_Chinsiriwong","dept":"雲端服務開發部"},"6_3":{"zh":"陳煦 #28725","en":"Summer7_Chen","dept":"雲端服務開發部"},"7_2":{"zh":"程令儀 #22465","en":"Kim_Cheng","dept":"雲端服務開發部"},"7_3":{"zh":"蔡旻哲 #24281","en":"Ian2_Tsai","dept":"雲端服務開發部"}};
-const SKIP_10F = new Set(['4_0','4_1','5_0','5_1','6_0','6_1','7_0','7_1','0_0','0_1']);
+const ORIG_10F = {"0_0":{"zh":"吳冠逸 #21912","en":"Emil_Wu","dept":"商業數據服務開發處"},"0_1":{"zh":"郭建宏 #23183","en":"Kakuangelo_kuo","dept":"遠距健康"},"0_2":{"zh":"林純忠 #27507","en":"Mirage_Lin","dept":"商業數據服務開發處"},"1_1":{"zh":"劉金富 #23015","en":"Jonny1_Liu","dept":"商業數據服務開發處"},"1_2":{"zh":"黃怡芸 #29399","en":"Where_Huang","dept":"遠距健康"},"1_3":{"zh":"葉日威 #24301","en":"Mars_Yeh","dept":"商業數據服務開發處"},"1_4":{"zh":"李季恩 #29940","en":"Nathan1_Lee","dept":"商業數據服務開發處"},"2_0":{"zh":"邱伶怡 #29941","en":"Chloe_Chiu","dept":"商業數據服務開發處"},"2_1":{"zh":"蔣克誠 #29813","en":"Josh2_Chiang","dept":"商業數據服務開發處"},"2_2":{"zh":"楊政遠 #23832","en":"Sawyer_Yang","dept":"商業數據服務開發處"},"2_3":{"zh":"顏政易 #23253","en":"Tony_Yen","dept":"商業數據服務開發處"},"2_4":{"zh":"陳威志 #21597","en":"Sid1_Chen","dept":"商業數據服務開發處"},"3_3":{"zh":"黃信維 #29192","en":"Shawn5_Huang","dept":"商業數據服務開發處"},"3_4":{"zh":"張柏偉 #25541","en":"Virgil_Chang","dept":"商業數據服務開發處"},"4_0":{"zh":"陳彥伯 #29098","en":"Olaf1_Chen","dept":"商業數據服務開發處"},"4_3":{"zh":"何鎮 #29908","en":"Pto_He","dept":"商業數據服務開發處"},"4_4":{"zh":"駱泱靚 #23799","en":"Camel_Lo","dept":"商業數據服務開發處"},"5_0":{"zh":"謝博宇","en":"Albert_Hsieh","dept":"商業數據服務開發處"},"5_1":{"zh":"梁凱婷 #28484","en":"Kelly_Liang","dept":"商業數據服務開發處"},"5_2":{"zh":"林韋廷 #29963","en":"Willie1_Lin","dept":"商業數據服務開發處"},"5_3":{"zh":"Yanwarud Chinsiriwong #25098","en":"Wenfeng_Chinsiriwong","dept":"商業數據服務開發處"},"5_4":{"zh":"陳煦 #28725","en":"Summer7_Chen","dept":"商業數據服務開發處"},"6_0":{"zh":"趙新予 #23850","en":"Homura_Chao","dept":"商業數據服務開發處"},"6_1":{"zh":"林憶萍 #25991","en":"AppleYP_Lin","dept":"商業數據服務開發處"},"6_2":{"zh":"曹昌林 #22563","en":"Jerry_Tsao","dept":"商業數據服務開發處"},"6_3":{"zh":"程令儀 #22465","en":"Kim_Cheng","dept":"商業數據服務開發處"},"6_4":{"zh":"蔡旻哲 #24281","en":"Ian2_Tsai","dept":"商業數據服務開發處"}};
+const SKIP_10F = new Set(); // 10F uses dynamic rendering
 
 let floor='6F', states={}, filterDept='all', srchQ='', zoom=55;
 let pinnedSlots={'6F':new Set(),'4F':new Set(),'10F':new Set()};
@@ -321,18 +320,16 @@ function render4F(cv){
 
 function render10F(cv){
   const CW10=110,CH10=65,G10=8;
-  cv.style.width=(4*(CW10+G10)+40)+'px';
-  cv.style.height=(8*(CH10+G10)+20)+'px';
-  for(let vr=0;vr<8;vr++) for(let vc=0;vc<4;vc++){
+  cv.style.width=(5*(CW10+G10)+20)+'px';
+  cv.style.height=(7*(CH10+G10)+20)+'px';
+  for(let vr=0;vr<7;vr++) for(let vc=0;vc<5;vc++){
     const k=sk(vr,vc);
-    if(SKIP_10F.has(k)) continue;
-    const x=vc*(CW10+G10),y=vr*(CH10+G10);
+    const x=vc*(CW10+G10), y=vr*(CH10+G10);
     const p=states['10F'][k];
     if(p) mkSeat(cv,k,x,y,p,'10F',CW10,CH10);
-    else mkEmpty(cv,k,x,y,'10F',CW10,CH10);
+    // no empty slots shown for 10F
   }
 }
-
 function mkSeat(cv,key,x,y,p,fl,w,h){
   w=w||CW; h=h||CH;
   const el=document.createElement('div');

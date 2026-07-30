@@ -149,7 +149,6 @@ body { font-family:'Noto Sans TC',sans-serif; background:var(--bg); color:var(--
   <div class="logo">AOCC</div>
   <div class="ftabs">
     <div class="ftab on" onclick="switchFloor('6F',this)">6F</div>
-    <div class="ftab" onclick="switchFloor('4F',this)">4F</div>
     <div class="ftab" onclick="switchFloor('10F',this)">10F</div>
   </div>
   <div class="sbox">
@@ -218,9 +217,6 @@ const DB = Object.fromEntries(DEPTS.map(d=>[d.k,d.bg]));
 // 6F LAYOUT CONFIG
 // Column x positions (with aisle gaps = 22px, pair gaps = 5px, seat width = 90px)
 // ═══════════════════════════════════════════════════════════
-const CW=90, CH=60, ROW_GAP=6;
-
-// Computed from: adjacent (diff=1) → 5px gap, aisle (diff=2) → 22px gap
 // ─── NEW GRID LAYOUT (直座位表) ───
 const CW=90, CH=60, SEAT_GAP=5, HAISLE_H=22, VAISLE_W=28;
 const R_OFFSET = 8*(CW+SEAT_GAP) + VAISLE_W;
@@ -319,7 +315,7 @@ const ORIG_4F = {
 };
 
 // 10F data
-const ORIG_10F = {"0_2":{"zh":"林韋廷 #29963","en":"Willie1_Lin","dept":"雲端服務開發部"},"0_3":{"zh":"邱伶怡 #994","en":"Chloe_Chiu","dept":"雲端服務開發部"},"1_0":{"zh":"郭建宏 #23183","en":"Kakuangelo_kuo","dept":"遠距健康"},"1_1":{"zh":"林純忠 #27507","en":"Mirage_Lin","dept":"雲端服務開發部"},"1_2":{"zh":"曹昌林 #22563","en":"Jerry_Tsao","dept":"雲端服務開發部"},"1_3":{"zh":"陳彥伯 #29098","en":"Olaf1_Chen","dept":"雲端服務開發部"},"2_0":{"zh":"劉金富 #3015","en":"Jonny1_Liu","dept":"雲端服務開發部"},"2_1":{"zh":"黃怡芸 #29399","en":"Where_Huang","dept":"遠距健康"},"2_2":{"zh":"葉日威 #24301","en":"Mars_Yeh","dept":"雲端服務開發部"},"2_3":{"zh":"李季恩 #9940","en":"Nathan1_Lee","dept":"雲端服務開發部"},"3_0":{"zh":"蔣克誠 #29813","en":"Josh2_Chiang","dept":"雲端服務開發部"},"3_1":{"zh":"楊政遠 #23832","en":"Sawyer_Yang","dept":"雲端服務開發部"},"3_2":{"zh":"顏政易 #23253","en":"Tony_Yen","dept":"雲端服務開發部"},"3_3":{"zh":"陳威志 #21597","en":"Sid1_Chen","dept":"雲端服務開發部"},"4_2":{"zh":"黃信維 #29192","en":"Shawn5_Huang","dept":"雲端服務開發部"},"4_3":{"zh":"張柏偉 #25541","en":"Virgil_Chang","dept":"雲端服務開發部"},"5_2":{"zh":"何鎮 #29908","en":"Pto_He","dept":"雲端服務開發部"},"5_3":{"zh":"駱泱靚 #23799","en":"Camel_Lo","dept":"雲端服務開發部"},"6_2":{"zh":"Yanwarud Chinsiriwong #25098","en":"Wenfeng_Chinsiriwong","dept":"雲端服務開發部"},"6_3":{"zh":"陳煦 #28725","en":"Summer7_Chen","dept":"雲端服務開發部"},"7_2":{"zh":"程令儀 #22465","en":"Kim_Cheng","dept":"雲端服務開發部"},"7_3":{"zh":"蔡旻哲 #24281","en":"Ian2_Tsai","dept":"雲端服務開發部"}};
+const ORIG_10F = {"0_0":{"zh":"吳冠逸 #21912","en":"Emil_Wu","dept":"商業數據服務開發處"},"0_1":{"zh":"郭建宏 #23183","en":"Kakuangelo_kuo","dept":"遠距健康"},"0_2":{"zh":"林純忠 #27507","en":"Mirage_Lin","dept":"商業數據服務開發處"},"1_1":{"zh":"劉金富 #23015","en":"Jonny1_Liu","dept":"商業數據服務開發處"},"1_2":{"zh":"黃怡芸 #29399","en":"Where_Huang","dept":"遠距健康"},"1_3":{"zh":"葉日威 #24301","en":"Mars_Yeh","dept":"商業數據服務開發處"},"1_4":{"zh":"李季恩 #29940","en":"Nathan1_Lee","dept":"商業數據服務開發處"},"2_0":{"zh":"邱伶怡 #29941","en":"Chloe_Chiu","dept":"商業數據服務開發處"},"2_1":{"zh":"蔣克誠 #29813","en":"Josh2_Chiang","dept":"商業數據服務開發處"},"2_2":{"zh":"楊政遠 #23832","en":"Sawyer_Yang","dept":"商業數據服務開發處"},"2_3":{"zh":"顏政易 #23253","en":"Tony_Yen","dept":"商業數據服務開發處"},"2_4":{"zh":"陳威志 #21597","en":"Sid1_Chen","dept":"商業數據服務開發處"},"3_3":{"zh":"黃信維 #29192","en":"Shawn5_Huang","dept":"商業數據服務開發處"},"3_4":{"zh":"張柏偉 #25541","en":"Virgil_Chang","dept":"商業數據服務開發處"},"4_0":{"zh":"陳彥伯 #29098","en":"Olaf1_Chen","dept":"商業數據服務開發處"},"4_3":{"zh":"何鎮 #29908","en":"Pto_He","dept":"商業數據服務開發處"},"4_4":{"zh":"駱泱靚 #23799","en":"Camel_Lo","dept":"商業數據服務開發處"},"5_0":{"zh":"謝博宇","en":"Albert_Hsieh","dept":"商業數據服務開發處"},"5_1":{"zh":"梁凱婷 #28484","en":"Kelly_Liang","dept":"商業數據服務開發處"},"5_2":{"zh":"林韋廷 #29963","en":"Willie1_Lin","dept":"商業數據服務開發處"},"5_3":{"zh":"Yanwarud Chinsiriwong #25098","en":"Wenfeng_Chinsiriwong","dept":"商業數據服務開發處"},"5_4":{"zh":"陳煦 #28725","en":"Summer7_Chen","dept":"商業數據服務開發處"},"6_0":{"zh":"趙新予 #23850","en":"Homura_Chao","dept":"商業數據服務開發處"},"6_1":{"zh":"林憶萍 #25991","en":"AppleYP_Lin","dept":"商業數據服務開發處"},"6_2":{"zh":"曹昌林 #22563","en":"Jerry_Tsao","dept":"商業數據服務開發處"},"6_3":{"zh":"程令儀 #22465","en":"Kim_Cheng","dept":"商業數據服務開發處"},"6_4":{"zh":"蔡旻哲 #24281","en":"Ian2_Tsai","dept":"商業數據服務開發處"}};
 
 // ═══════════════════════════════════════════════════════════
 // STATE
@@ -459,24 +455,19 @@ function render4F(cv){
   }
 }
 
-const SKIP_10F = new Set(['4_0','4_1','5_0','5_1','6_0','6_1','7_0','7_1','0_0','0_1']);
+const SKIP_10F = new Set(); // 10F uses dynamic rendering
 function render10F(cv){
-  const CW10=110, CH10=65, G10=8;
-  cv.style.width=(4*(CW10+G10)+40)+'px';
-  cv.style.height=(8*(CH10+G10)+20)+'px';
-  for(let vr=0;vr<8;vr++){
-    for(let vc=0;vc<4;vc++){
-      const k=sk(vr,vc);
-      if(SKIP_10F.has(k)) continue;
-      const x=vc*(CW10+G10);
-      const y=vr*(CH10+G10);
-      const person=states['10F'][k];
-      if(person) mkSeat(cv,k,x,y,person,'10F',CW10,CH10);
-      else mkEmpty(cv,k,x,y,'10F',CW10,CH10);
-    }
+  const CW10=110,CH10=65,G10=8;
+  cv.style.width=(5*(CW10+G10)+20)+'px';
+  cv.style.height=(7*(CH10+G10)+20)+'px';
+  for(let vr=0;vr<7;vr++) for(let vc=0;vc<5;vc++){
+    const k=sk(vr,vc);
+    const x=vc*(CW10+G10), y=vr*(CH10+G10);
+    const p=states['10F'][k];
+    if(p) mkSeat(cv,k,x,y,p,'10F',CW10,CH10);
+    // no empty slots shown for 10F
   }
 }
-
 function mkAisle(cv,top,h,text){
   const el=document.createElement('div');
   el.className='aisle-band'; el.style.zIndex='3';
@@ -504,7 +495,9 @@ function mkSeat(cv,key,x,y,p,fl,w,h){
   const color=DC[p.dept]||'#94a3b8';
   const bg=DB[p.dept]||'#f8fafc';
   el.style.cssText=`left:${x}px;top:${y}px;width:${w}px;height:${h}px;background:${isNew?'#fafbfe':bg};z-index:1;`;
-  el.innerHTML=`<div class="bar" style="background:${color}"></div><div class="zh">${p.zh||p.en}</div>${p.zh&&p.en?`<div class="en">${p.en}</div>`:''}<div class="ebtn" onclick="openEdit('${key}','${fl}',event)">✎</div>`;
+  const enDiv=p.zh&&p.en?'<div class="en">'+p.en+'</div>':'';
+  const editBtn='<div class="ebtn" onclick="openEdit(\''+key+'\',\''+fl+'\',event)">✎</div>';
+  el.innerHTML='<div class="bar" style="background:'+color+'"></div><div class="zh">'+(p.zh||p.en)+'</div>'+enDiv+editBtn;
   el.draggable=true;
   el.addEventListener('dragstart',onDS); el.addEventListener('dragend',onDE);
   el.addEventListener('mouseenter',showTip); el.addEventListener('mouseleave',hideTip);
@@ -558,7 +551,8 @@ function showTip(e){
   const k=e.currentTarget.dataset.key,fl=e.currentTarget.dataset.fl;
   const p=states[fl][k]; if(!p) return;
   const c=DC[p.dept]||'#94a3b8';
-  tipEl.innerHTML=`<div class="tz">${p.zh||p.en}</div>${p.zh&&p.en?`<div class="te">${p.en}</div>`:''}<span class="td" style="background:${c}22;color:${c}">${p.dept}</span>`;
+  const tipEn=p.zh&&p.en?'<div class="te">'+p.en+'</div>':'';
+  tipEl.innerHTML='<div class="tz">'+(p.zh||p.en)+'</div>'+tipEn+'<span class="td" style="background:'+c+'22;color:'+c+'">'+p.dept+'</span>';
   tipEl.style.display='block'; moveTip(e);
 }
 function hideTip(){ tipEl.style.display='none'; }
@@ -576,7 +570,8 @@ function buildLegend(){
   [{k:'全部',color:'#64748b'},...DEPTS.filter(d=>counts[d.k])].forEach(d=>{
     const chip=document.createElement('div');
     chip.className='lchip'+(filterDept===d.k||(d.k==='全部'&&filterDept==='all')?' on':'');
-    chip.innerHTML=`<span class="dot" style="background:${d.color}"></span>${d.k}${counts[d.k]?` <span class="n">${counts[d.k]}</span>`:''}`;
+    const cntSpan=counts[d.k]?' <span class="n">'+counts[d.k]+'</span>':'';
+    chip.innerHTML='<span class="dot" style="background:'+d.color+'"></span>'+d.k+cntSpan;
     chip.onclick=()=>{filterDept=d.k==='全部'?'all':d.k; render();};
     bar.appendChild(chip);
   });
@@ -602,7 +597,7 @@ function doSearch(v){srchQ=v.trim().toLowerCase(); applyFilter();}
 // ═══════════════════════════════════════════════════════════
 // EDIT MODAL
 // ═══════════════════════════════════════════════════════════
-function openEdit(key,fl,e){ e.stopPropagation(); e.preventDefault(); editKey=key; editFloor=fl; const p=states[fl][key]; document.querySelector('#editOv .modal h3').textContent=p?'✏️ 編輯座位':'➕ 新增人員'; document.getElementById('mZh').value=p?.zh||''; document.getElementById('mEn').value=p?.en||''; const dcs=document.getElementById('dcs'); dcs.innerHTML=''; DEPTS.forEach(d=>{const div=document.createElement('div'); div.className='dc'+(p?.dept===d.k?' sel':''); div.innerHTML=`<span class="dd" style="background:${d.color}"></span>${d.k}`; div.onclick=()=>{dcs.querySelectorAll('.dc').forEach(x=>x.classList.remove('sel')); div.classList.add('sel');}; dcs.appendChild(div);}); document.getElementById('editOv').classList.add('open'); }
+function openEdit(key,fl,e){ e.stopPropagation(); e.preventDefault(); editKey=key; editFloor=fl; const p=states[fl][key]; document.querySelector('#editOv .modal h3').textContent=p?'✏️ 編輯座位':'➕ 新增人員'; document.getElementById('mZh').value=p?.zh||''; document.getElementById('mEn').value=p?.en||''; const dcs=document.getElementById('dcs'); dcs.innerHTML=''; DEPTS.forEach(d=>{const div=document.createElement('div'); div.className='dc'+(p?.dept===d.k?' sel':''); div.innerHTML='<span class="dd" style="background:'+d.color+'"></span>'+d.k; div.onclick=()=>{dcs.querySelectorAll('.dc').forEach(x=>x.classList.remove('sel')); div.classList.add('sel');}; dcs.appendChild(div);}); document.getElementById('editOv').classList.add('open'); }
 function closeModal(e){ if(e&&e.target!==document.getElementById('editOv'))return; document.getElementById('editOv').classList.remove('open'); editKey=null; }
 function saveModal(){ if(!editKey)return; const zh=document.getElementById('mZh').value.trim(),en=document.getElementById('mEn').value.trim(); const sel=document.getElementById('dcs').querySelector('.sel'); const dept=sel?.textContent.trim()||'未指定'; if(!zh&&!en){toast('⚠ 請填入姓名');return;} undoStack[editFloor].push(clone(editFloor)); states[editFloor][editKey]={zh,en,dept}; document.getElementById('editOv').classList.remove('open'); editKey=null; save(); render(); toast('✓ 已儲存'); }
 function clearSlot(){ if(!editKey||!confirm('確定清空？'))return; undoStack[editFloor].push(clone(editFloor)); states[editFloor][editKey]=null; document.getElementById('editOv').classList.remove('open'); editKey=null; save(); render(); toast('✓ 已清空'); }
