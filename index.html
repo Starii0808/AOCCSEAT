@@ -627,8 +627,6 @@ document.addEventListener('keydown',e=>{ if((e.ctrlKey||e.metaKey)&&e.key==='z'&
 // ═══ PASSWORD ═══
 const PW_HASH='e276bd9146cb40de608c1deac80da19f316853ca8af2b4ba9e0953d17dd9a00a';
 async function sha256(str){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');}
-document.getElementById('pwBtn').onclick=checkPw;
-document.getElementById('pwInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkPw();});
 async function checkPw(){
   const h=await sha256(document.getElementById('pwInput').value);
   if(h===PW_HASH){
@@ -642,6 +640,9 @@ async function checkPw(){
   }
 }
 function bootApp(){initStates();load();render();setZoom(zoom);setInterval(save,15000);window.addEventListener('beforeunload',save);}
+// Assign events after function is defined
+document.getElementById('pwBtn').onclick=checkPw;
+document.getElementById('pwInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkPw();});
 if(sessionStorage.getItem('aocc_auth')===PW_HASH){document.getElementById('pwOverlay').style.display='none';document.getElementById('outer').style.display='block';bootApp();}
 
 // ═══ GITHUB GIST ═══
