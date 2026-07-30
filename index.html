@@ -626,24 +626,40 @@ document.addEventListener('keydown',e=>{ if((e.ctrlKey||e.metaKey)&&e.key==='z'&
 
 // ═══ PASSWORD ═══
 const PW_HASH='e276bd9146cb40de608c1deac80da19f316853ca8af2b4ba9e0953d17dd9a00a';
-async function sha256(str){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');}
+
+async function sha256(str){
+  const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+
+function showApp(){
+  document.getElementById('pwOverlay').style.display='none';
+  document.getElementById('outer').style.display='block';
+  try{ initStates(); load(); render(); setZoom(zoom); } catch(e){ console.error(e); }
+  setInterval(save,15000);
+  window.addEventListener('beforeunload',save);
+}
+
 async function checkPw(){
-  const h=await sha256(document.getElementById('pwInput').value);
+  const val=document.getElementById('pwInput').value;
+  if(!val){ document.getElementById('pwErr').textContent='請輸入密碼'; return; }
+  const h=await sha256(val);
   if(h===PW_HASH){
-    document.getElementById('pwOverlay').style.display='none';
-    document.getElementById('outer').style.display='block';
     sessionStorage.setItem('aocc_auth',PW_HASH);
-    bootApp();
+    showApp();
   }else{
-    document.getElementById('pwErr').textContent='密碼錯誤，跳轉至唯讀版…';
-    setTimeout(()=>window.location.href='view.html',1800);
+    document.getElementById('pwErr').textContent='密碼錯誤，1.8秒後跳轉唯讀版…';
+    setTimeout(()=>{ window.location.href='view.html'; },1800);
   }
 }
-function bootApp(){initStates();load();render();setZoom(zoom);setInterval(save,15000);window.addEventListener('beforeunload',save);}
-// Assign events after function is defined
-document.getElementById('pwBtn').onclick=checkPw;
-document.getElementById('pwInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkPw();});
-if(sessionStorage.getItem('aocc_auth')===PW_HASH){document.getElementById('pwOverlay').style.display='none';document.getElementById('outer').style.display='block';bootApp();}
+
+document.getElementById('pwBtn').addEventListener('click', checkPw);
+document.getElementById('pwInput').addEventListener('keydown', e=>{ if(e.key==='Enter') checkPw(); });
+
+// Auto-login if already authenticated this session
+if(sessionStorage.getItem('aocc_auth')===PW_HASH){
+  showApp();
+}
 
 // ═══ GITHUB GIST ═══
 const GIST_API='https://api.github.com/gists',GIST_FILE='aocc-seats.json';
